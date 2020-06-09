@@ -1,0 +1,10 @@
+language: elixir
+elixir: '1.10.3'
+otp_release: '23.0'
+jobs:
+  include:
+    - stage: pre-commit
+      before_script: pip install --user pre-commit
+      script: pre-commit run -a
+
+    - stage: tests
