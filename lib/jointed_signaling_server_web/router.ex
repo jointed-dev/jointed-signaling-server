@@ -1,14 +1,6 @@
 defmodule JointedSignalingServerWeb.Router do
   use JointedSignalingServerWeb, :router
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
-  scope "/api", JointedSignalingServerWeb do
-    pipe_through :api
-  end
-
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
