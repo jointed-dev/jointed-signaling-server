@@ -2,8 +2,8 @@ defmodule JointedSignalingServerWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", JointedSignalingServerWeb.RoomChannel
   channel "user", JointedSignalingServerWeb.UserChannel
+  channel "room:*", JointedSignalingServerWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
