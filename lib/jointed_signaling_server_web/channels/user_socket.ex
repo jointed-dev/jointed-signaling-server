@@ -3,6 +3,7 @@ defmodule JointedSignalingServerWeb.UserSocket do
 
   ## Channels
   # channel "room:*", JointedSignalingServerWeb.RoomChannel
+  channel "user", JointedSignalingServerWeb.UserChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
