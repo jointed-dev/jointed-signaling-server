@@ -15,6 +15,13 @@ config :jointed_signaling_server, JointedSignalingServerWeb.Endpoint,
   pubsub_server: JointedSignalingServer.PubSub,
   live_view: [signing_salt: "viIkJzmS"]
 
+config :jointed_signaling_server, :children, [
+  JointedSignalingServerWeb.Telemetry,
+  {Phoenix.PubSub, name: JointedSignalingServer.PubSub},
+  JointedSignalingServerWeb.Endpoint,
+  JointedSignalingServer.AvailableRoomServer
+]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

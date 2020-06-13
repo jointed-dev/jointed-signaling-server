@@ -6,16 +6,9 @@ defmodule JointedSignalingServer.Application do
   use Application
 
   def start(_type, _args) do
-    children = [
-      # Start the Telemetry supervisor
-      JointedSignalingServerWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: JointedSignalingServer.PubSub},
-      # Start the Endpoint (http/https)
-      JointedSignalingServerWeb.Endpoint
-      # Start a worker by calling: JointedSignalingServer.Worker.start_link(arg)
-      # {JointedSignalingServer.Worker, arg}
-    ]
+    children =
+      :jointed_signaling_server
+      |> Application.get_env(:children)
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

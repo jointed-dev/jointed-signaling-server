@@ -6,5 +6,11 @@ config :jointed_signaling_server, JointedSignalingServerWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+config :jointed_signaling_server, :children, [
+  JointedSignalingServerWeb.Telemetry,
+  {Phoenix.PubSub, name: JointedSignalingServer.PubSub},
+  JointedSignalingServerWeb.Endpoint
+]
+
 # Print only warnings and errors during test
 config :logger, level: :warn
