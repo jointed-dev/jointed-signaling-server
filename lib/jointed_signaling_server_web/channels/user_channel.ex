@@ -6,7 +6,7 @@ defmodule JointedSignalingServerWeb.UserChannel do
   end
 
   def handle_in("join_or_create_room", _params, socket) do
-    # TODO: Check available rooms or create new one
-    {:noreply, socket}
+    id = JointedSignalingServer.AvailableRoomServer.join_or_create()
+    {:reply, {:ok, %{id: id}}, socket}
   end
 end

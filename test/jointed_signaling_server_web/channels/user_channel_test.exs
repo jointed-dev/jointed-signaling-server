@@ -3,6 +3,8 @@ defmodule JointedSignalingServerWeb.UserChannelTest do
   alias JointedSignalingServerWeb.{UserSocket, UserChannel}
 
   setup do
+    start_supervised(JointedSignalingServer.AvailableRoomServer)
+
     {:ok, _, socket} =
       UserSocket
       |> socket(%{}, %{})
@@ -20,7 +22,13 @@ defmodule JointedSignalingServerWeb.UserChannelTest do
     assert {:ok, socket} = UserChannel.join("user", "", socket)
   end
 
+  #
+  # Integration tests
+  #
+
   test "handle_in join_or_create_room", %{socket: socket} do
-    assert {:noreply, socket} = UserChannel.handle_in("join_or_create_room", %{}, socket)
+    ref = push(socket, "join_or_create_room", %{})
+    assert_reply ref, :ok, %{id: id}
+    assert is_binary(id)
   end
 end
